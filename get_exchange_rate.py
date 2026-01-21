@@ -1,6 +1,12 @@
+import os
 import requests
+from dotenv import load_dotenv
 
-API_KEY = "ed9315d06ac8894b548723ae"
+load_dotenv()
+API_KEY = os.getenv("exchange_rate_api_key")
+if not API_KEY:
+    raise ValueError("API key not found. Please set the 'exchange_rate_api_key' in the .env file.")
+
 base_url = f"https://v6.exchangerate-api.com/v6/{API_KEY}/latest/USD"
 
 try:
